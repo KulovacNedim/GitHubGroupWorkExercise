@@ -66,31 +66,62 @@ public class Methods {
 			break;
 		case 3:
 
-			System.out.print("Unesi string : ");
+			System.out.print("Enter some string: ");
 			String s_1 = sc.next();
 
 			String s_2 = sort(s_1);
-			System.out.println(s_2);
+			System.out.println("Sorted string is: " + s_2);
 
 			break;
 		case 4:
 
-			System.out.println("Unesi 4 x 4 matricu : ");
+			System.out.println("Enter 4×4 matrix: ");
+
 			double[][] m = new double[4][4];
-			
+
 			for (int i = 0; i < m.length; i++) {
 				for (int j = 0; j < m[i].length; j++) {
 					m[i][j] = sc.nextDouble();
 				}
 			}
-			
-			System.out.println("Suma glavne dijagonale iznosi : " + sumMajorDiagonal(m));
+
+			System.out.println("Major diagonal sum is: " + sumMajorDiagonal(m));
 
 			break;
 		case 5:
 
+			System.out.println("Enter 4×4 matrix: ");
+
+			double[][] matrix = new double[4][4];
+
+			for (int i = 0; i < matrix.length; i++) {
+				for (int j = 0; j < matrix[i].length; j++) {
+					matrix[i][j] = sc.nextDouble();
+				}
+			}
+
+			System.out.print("\nEnter column index to sum elements on it: ");
+			int col = sc.nextInt();
+
+			System.out.println("Sum of index " + col + " column elements is: " + sumColumn(matrix, col));
+
 			break;
 		case 6:
+
+			System.out.println("\nRandom genarated  4×4 matrix:");
+
+			int[][] matrixRandom = new int[4][4];
+
+			for (int i = 0; i < matrixRandom.length; i++) {
+				for (int j = 0; j < matrixRandom[i].length; j++) {
+
+					matrixRandom[i][j] = (int) (Math.random() * 10);
+					System.out.print(matrixRandom[i][j] + " ");
+				}
+				System.out.println();
+			}
+
+			sort(matrixRandom);
 
 			break;
 		default:
@@ -184,10 +215,39 @@ public class Methods {
 
 	public static double sumColumn(double[][] m, int columnIndex) {
 
-		return 0.00;
+		double returnValue = 0;
+
+		for (int i = 0; i < m[1].length; i++) {
+
+			returnValue = returnValue + m[i][columnIndex];
+		}
+		return returnValue;
 	}
 
 	public static void sort(int m[][]) {
 
+		for (int i = 0; i < m.length - 1; i++) {
+			int currentIndex = i;
+			int[] current = m[i];
+			for (int j = i + 1; j < m.length; j++) {
+				if (current[0] > m[j][0] || current[0] == m[j][0] && current[1] > m[j][1]) {
+					current = m[j];
+					currentIndex = j;
+				}
+			}
+			if (currentIndex != i) {
+				m[currentIndex] = m[i];
+				m[i] = current;
+			}
+		}
+
+		System.out.println("\nSorted matrix is: ");
+
+		for (int i = 0; i < m.length; i++) {
+			for (int j = 0; j < m[i].length; j++) {
+				System.out.print(m[i][j] + " ");
+			}
+			System.out.println();
+		}
 	}
 }

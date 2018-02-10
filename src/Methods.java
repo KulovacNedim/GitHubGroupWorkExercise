@@ -1,4 +1,5 @@
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Methods {
@@ -31,27 +32,55 @@ public class Methods {
 		switch (option) {
 		case 1:
 
+			int[] list = new int[10];
+
+			System.out.println("Enter 10 integers (separete them with space or enter key): ");
+			
+			for (int i = 0; i < list.length; i++) {
+				list[i] = sc.nextInt();
+			}
+
+			System.out.print("Array with no duplicates is :");
+
+			int[] array = eliminateDuplicates(list);
+
+			for (int i = 0; i < array.length; i++) {
+				if (array[i] != 0) {
+					System.out.print(array[i] + " ");
+				}
+			}
+
 			break;
 		case 2:
 			
+			int[] newList = new int[10];
+
+			System.out.println("Enter 10 integers (separete them with space or enter key): ");
+
+			for (int i = 0; i < newList.length; i++) {
+				newList[i] = sc.nextInt();
+			}
+			
+			System.out.println("List you entered " + (isSorted(newList) ? "is" : "is not") + " already sorted.");
+						
 			break;
 		case 3:
-			
+
 			break;
 		case 4:
-			
+
 			break;
 		case 5:
-			
+
 			break;
 		case 6:
-			
+
 			break;
 		default:
-			
-			if (option < 1 ||  option > 6) {
+
+			if (option < 1 || option > 6) {
 				System.out.println("\nWrong input! Try again!");
-				
+
 				showMenu(sc);
 			}
 		}
@@ -59,30 +88,62 @@ public class Methods {
 
 	public static int[] eliminateDuplicates(int[] list) {
 
-	return null;
+		int[] newArray = new int[10];
+		int counter = 0;
+
+		for (int i = 0; i < list.length; i++) {
+
+			for (int j = i; j < list.length; j++) {
+
+				if (list[i] == list[j]) {
+					counter++;
+				}
+
+			}
+
+			if (counter < 2) {
+				newArray[i] = list[i];
+			}
+			counter = 0;
+		}
+		
+		Arrays.sort(newArray);
+		return newArray;
 	}
-	
+
 	public static boolean isSorted(int[] list) {
+
+		int[] sortedList = Arrays.copyOf(list, list.length);
+		Arrays.sort(sortedList);
+		boolean flag = true;
 		
-		return true;
+		for (int i = 0; i < list.length; i++) {
+			
+			if (list[i] != sortedList[i]) {
+				flag = false;
+				break;
+			}
+		}
+		
+		return flag;
 	}
-	
+
 	public static String sort(String s) {
-		
+
 		return null;
 	}
-	
+
 	public static double sumMajorDiagonal(double[][] m) {
-		
+
 		return 0.00;
 	}
-	
+
 	public static double sumColumn(double[][] m, int columnIndex) {
-		
+
 		return 0.00;
 	}
-	
+
 	public static void sort(int m[][]) {
-		
+
 	}
 }

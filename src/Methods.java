@@ -40,7 +40,7 @@ public class Methods {
 				list[i] = sc.nextInt();
 			}
 
-			System.out.print("Array with no duplicates is :");
+			System.out.print("Array with no duplicates is: ");
 
 			int[] array = eliminateDuplicates(list);
 

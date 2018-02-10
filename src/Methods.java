@@ -35,7 +35,7 @@ public class Methods {
 			int[] list = new int[10];
 
 			System.out.println("Enter 10 integers (separete them with space or enter key): ");
-			
+
 			for (int i = 0; i < list.length; i++) {
 				list[i] = sc.nextInt();
 			}
@@ -52,7 +52,7 @@ public class Methods {
 
 			break;
 		case 2:
-			
+
 			int[] newList = new int[10];
 
 			System.out.println("Enter 10 integers (separete them with space or enter key): ");
@@ -60,14 +60,31 @@ public class Methods {
 			for (int i = 0; i < newList.length; i++) {
 				newList[i] = sc.nextInt();
 			}
-			
+
 			System.out.println("List you entered " + (isSorted(newList) ? "is" : "is not") + " already sorted.");
-						
+
 			break;
 		case 3:
 
+			System.out.print("Unesi string : ");
+			String s_1 = sc.next();
+
+			String s_2 = sort(s_1);
+			System.out.println(s_2);
+
 			break;
 		case 4:
+
+			System.out.println("Unesi 4 x 4 matricu : ");
+			double[][] m = new double[4][4];
+			
+			for (int i = 0; i < m.length; i++) {
+				for (int j = 0; j < m[i].length; j++) {
+					m[i][j] = sc.nextDouble();
+				}
+			}
+			
+			System.out.println("Suma glavne dijagonale iznosi : " + sumMajorDiagonal(m));
 
 			break;
 		case 5:
@@ -106,7 +123,7 @@ public class Methods {
 			}
 			counter = 0;
 		}
-		
+
 		Arrays.sort(newArray);
 		return newArray;
 	}
@@ -116,26 +133,53 @@ public class Methods {
 		int[] sortedList = Arrays.copyOf(list, list.length);
 		Arrays.sort(sortedList);
 		boolean flag = true;
-		
+
 		for (int i = 0; i < list.length; i++) {
-			
+
 			if (list[i] != sortedList[i]) {
 				flag = false;
 				break;
 			}
 		}
-		
+
 		return flag;
 	}
 
 	public static String sort(String s) {
 
-		return null;
+		String[] sCopy = new String[s.length()];
+
+		for (int i = 0; i < s.length(); i++) {
+			sCopy[i] = "" + s.charAt(i);
+		}
+
+		for (int i = 0; i < sCopy.length - 1; i++) {
+
+			for (int j = i + 1; j < sCopy.length; j++) {
+
+				if (sCopy[i].compareToIgnoreCase(sCopy[j]) > 0) {
+					String t = sCopy[i];
+					sCopy[i] = sCopy[j];
+					sCopy[j] = t;
+				}
+			}
+		}
+
+		String s2 = "";
+
+		for (int i = 0; i < sCopy.length; i++) {
+			s2 = s2 + sCopy[i];
+		}
+		return s2;
 	}
 
 	public static double sumMajorDiagonal(double[][] m) {
 
-		return 0.00;
+		double sum = 0;
+		for (int i = 0; i < m.length; i++) {
+			sum = sum + m[i][i];
+		}
+		return sum;
 	}
 
 	public static double sumColumn(double[][] m, int columnIndex) {
